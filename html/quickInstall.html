@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quick Installation &mdash; HolistIX  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="First Time IXP Manager Setup" href="firstTime.html" />
+    <link rel="prev" title="HolistIX’s documentation" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> HolistIX
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Quick Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ixp-manager">IXP Manager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#miru">Miru</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#athos">Athos</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#docker">Docker</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#cerberus-installation">Cerberus installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#openflow-switch-configuration">OpenFlow Switch configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#post-install-instructions">Post Install Instructions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="firstTime.html">First Time IXP Manager Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="HolistixUsage.html">HolistIX usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="troubleshoot.html">Common Troubleshooting Issues</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">HolistIX</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Quick Installation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/quickInstall.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="quick-installation">
+<h1>Quick Installation<a class="headerlink" href="#quick-installation" title="Permalink to this headline"></a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline"></a></h2>
+<p>This install guide is a quick overview of how to install all the components of
+HolistIX and how to get started from scratch. For more details on how to
+install of each of the components, check the technical walkthrough section.</p>
+<p>We recommend a fresh install of Ubuntu LTS 20.04 on a machine with a minimum of
+10GB of space (40GB recommended) and 2GB of RAM (4GB recommended).</p>
+<p>During the Ubuntu installation, install OpenSSH so you can ssh in to complete
+the process later, and do not install Docker. We will install Docker using
+their recommended process later.</p>
+</section>
+<section id="ixp-manager">
+<h2>IXP Manager<a class="headerlink" href="#ixp-manager" title="Permalink to this headline"></a></h2>
+<p>We will use the IXP Manager automated install script. As with all scripts
+downloaded from the internet, we strongly recommend examining them. IXP
+Manager offers a breakdown of the install process
+<a class="reference external" href="https://www.youtube.com/watch?v=qRIl1ioG6Ck">here</a> as well as instructions
+for the <a class="reference external" href="https://docs.ixpmanager.org/install/manually/">manual installation</a>.</p>
+<p>To install using the
+<a class="reference external" href="https://github.com/inex/IXP-Manager/tree/master/tools/installers">script</a>,
+run the commands below and follow through the install process</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># change to root user</span>
+sudo su -
+
+<span class="c1"># download the installation script</span>
+wget https://github.com/inex/IXP-Manager/raw/master/tools/installers/ubuntu-lts-2004-ixp-manager-v5.sh
+
+<span class="c1"># and execute it:</span>
+bash ./ubuntu-lts-2004-ixp-manager-v5.sh
+</pre></div>
+</div>
+<p>Once you have finished the install process, follow the
+<a class="reference external" href="https://docs.ixpmanager.org/install/next-steps/">post-install steps</a>.</p>
+<p>For HolistIX, the following needs to be configured:</p>
+<ul class="simple">
+<li><p>Infrastructure (think of it as an IXP)</p></li>
+<li><p>Facilities (point of presences)</p></li>
+<li><p>Racks</p></li>
+<li><p>Switches (SNMPv2 is recommended)</p></li>
+<li><p>VLAN(s)</p></li>
+<li><p>IPv4/6 addresses</p></li>
+</ul>
+</section>
+<section id="miru">
+<span id="miru-install"></span><h2>Miru<a class="headerlink" href="#miru" title="Permalink to this headline"></a></h2>
+<p>The install instructions are based on the IXP Manager automated script and uses
+the following environment variables. Change appropriately for your install.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">IXPROOT</span><span class="o">=</span>/srv/ixpmanager
+<span class="nv">MY_WWW_USER</span><span class="o">=</span>www-data
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>In <code class="docutils literal notranslate"><span class="pre">${IXPROOT}</span></code> run <code class="docutils literal notranslate"><span class="pre">composer</span> <span class="pre">require</span> <span class="pre">holist-ix/miru</span></code></p></li>
+<li><p>Edit <code class="docutils literal notranslate"><span class="pre">$IXPROOT/.env</span></code> uncomment and change <code class="docutils literal notranslate"><span class="pre">VIEW_SKIN=miru</span></code></p></li>
+</ul>
+<p>The package is now installed, however we still need to do a couple more steps to
+access HolistIX within IXP Manager.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Add Miru web pages to IXP Manager</span>
+ln -s <span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span>/vendor/holist-ix/miru/src/skins/miru <span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span>/resources/skins/miru
+<span class="c1"># Copy over custom variable page</span>
+cp <span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span>/vendor/holist-ix/miru/src/config/custom.php <span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span>/config/custom.php
+
+<span class="c1"># Add the JavaScript libraries and keep them posted with</span>
+ln -s <span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span>/vendor/holist-ix/miru/src/js/mxgraph <span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span>/public/mxgraph
+
+<span class="c1"># Ensure that our user still has permission to work with everything</span>
+chown -R <span class="nv">$MY_WWW_USER</span>: <span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span>/resources/skins/miru
+chmod -R ug+rw <span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span>/resources/skins/miru
+</pre></div>
+</div>
+<p>In <code class="docutils literal notranslate"><span class="pre">${IXPROOT}/config/custom.php</span></code> you will find the custom variables for
+HolistIX. Here we specify the <code class="docutils literal notranslate"><span class="pre">Athos</span></code> install directory as well as the
+<code class="docutils literal notranslate"><span class="pre">Cerberus</span></code> api url.</p>
+<p>Below is a sample config file:</p>
+<div class="highlight-php notranslate" id="sample-config"><div class="highlight"><pre><span></span><span class="x">return [</span>
+<span class="x">    &#39;athos&#39; =&gt; [</span>
+<span class="x">        // The directory where your athos is stored</span>
+<span class="x">        &#39;dir&#39; =&gt; &#39;/athos&#39;,</span>
+<span class="x">        // The URL for the athos wrapper API</span>
+<span class="x">        &#39;api_url&#39; =&gt; &#39;http://localhost:8989&#39;</span>
+<span class="x">    ],</span>
+<span class="x">    &#39;cerberus&#39; =&gt; [</span>
+<span class="x">        &#39;api_url&#39; =&gt; &#39;http://localhost:8080/api&#39;,</span>
+<span class="x">    ]</span>
+<span class="x">];</span>
+</pre></div>
+</div>
+</section>
+<section id="athos">
+<h2>Athos<a class="headerlink" href="#athos" title="Permalink to this headline"></a></h2>
+<p>We will be primarily running Athos through docker. However, we will have a local
+copy to help with running scripts and storing the configurations generated from
+Miru.</p>
+<p>Get a local copy through either <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span></code> or <code class="docutils literal notranslate"><span class="pre">wget</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wget -q -O athos.zip https://github.com/Holist-IX/athos/archive/refs/heads/master.zip <span class="o">&amp;&amp;</span>
+unzip athos.zip <span class="o">&amp;&amp;</span>
+rm athos.zip
+</pre></div>
+</div>
+<p>This downloads and unzips Athos. Ensure that the Athos install directory matches
+what you have set in IXP Manager’s <a class="reference internal" href="#sample-config"><span class="std std-ref">custom config</span></a> at
+<code class="docutils literal notranslate"><span class="pre">${IXPROOT}/config/custom.php</span></code>.</p>
+<section id="docker">
+<h3>Docker<a class="headerlink" href="#docker" title="Permalink to this headline"></a></h3>
+<p>Docker is used primarily to help with emulating p4 enabled switches and to
+reduce the impact of running emulated networks on the host machine. Therefore it
+is <strong>strongly</strong> recommended to install the Athos docker image. Miru is by
+default configured to expect this configuration.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>For best results install Docker Community Edition (CE) following the official
+docker <a class="reference external" href="https://docs.docker.com/engine/install/">installation guide</a>.</p>
+</div>
+<p>Once completed, the Athos docker image can be pulled with
+<code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">pull</span> <span class="pre">belthazaar/athos</span></code></p>
+<p>To verify everything is working correctly, you can run the following</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker run --privileged belthazaar/athos
+</pre></div>
+</div>
+<p>This will run Athos with the example network topology, running 4 OpenFlow
+enabled Open vSwitches configured via faucet and 2 bmv2 switches running p4
+compiled umbrella code.</p>
+<p>To automate starting and stopping our docker containers, we make
+use of docker-compose and the <code class="docutils literal notranslate"><span class="pre">runDocker.sh</span></code> script in the root directory
+of athos.</p>
+<p>Since the docker image needs to be run in privileged mode, we have a wrapper API
+for athos that will run the docker image in privileged mode. The wrapper API will
+also handle storing the config for athos, getting the results and cleaning up
+the container afterwards.</p>
+</section>
+</section>
+<section id="cerberus-installation">
+<h2>Cerberus installation<a class="headerlink" href="#cerberus-installation" title="Permalink to this headline"></a></h2>
+<p>For deploying network configurations, we make us of the Cerberus SDN controller.
+This is the same controller used within the <code class="docutils literal notranslate"><span class="pre">Athos</span></code> Docker image.</p>
+<p>Cerberus is an OpenFlow controller for OpenFlow 1.3 switches that focuses on
+layer-2 switching. Cerberus takes a proactive approach to network configuration
+and only allows connections to hosts that are already configured.</p>
+<p>We can install Cerberus via pip as follows:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>% pip install cerberus-controller
+</pre></div>
+</div>
+<p>You can also install Cerberus from the source code if you prefer via:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>% git clone https://github/Holist-IX/cerberus/
+% <span class="nb">cd</span> cerberus<span class="p">;</span> pip install .
+</pre></div>
+</div>
+<p>The default configuration is located at <code class="docutils literal notranslate"><span class="pre">/etc/cerberus/topology.json</span></code>, with
+older configs stored at <code class="docutils literal notranslate"><span class="pre">/etc/cerberus/rollback/</span></code> and failed configs will be
+stored at <code class="docutils literal notranslate"><span class="pre">/etc/cerberus/failed/</span></code>.</p>
+<p>The default api address for Cerberus is <code class="docutils literal notranslate"><span class="pre">http://localhost:8080/api</span></code>.</p>
+</section>
+<section id="openflow-switch-configuration">
+<h2>OpenFlow Switch configuration<a class="headerlink" href="#openflow-switch-configuration" title="Permalink to this headline"></a></h2>
+<p>The best resource location to configure your OpenFlow switch, will be to follow
+the guide that <code class="docutils literal notranslate"><span class="pre">faucet</span></code> have on their
+<a class="reference external" href="https://docs.faucet.nz/en/latest/vendors/index.html">docs site</a>, as it is
+maintained primarily by the vendors themselves.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Currently there is no way to declare DPIDs in IXP Manager. To overcome this
+we use the switch id assigned in IXP Manager. To find the switch id, check
+the <a class="reference internal" href="firstTime.html#dpid"><span class="std std-ref">switch id section</span></a>.</p>
+</div>
+</section>
+<section id="post-install-instructions">
+<h2>Post Install Instructions<a class="headerlink" href="#post-install-instructions" title="Permalink to this headline"></a></h2>
+<p>As everything will be run from IXP Manager and HolistIX, ensure that your
+<code class="docutils literal notranslate"><span class="pre">$MY_WWW_USER</span></code> has access to read and write within <code class="docutils literal notranslate"><span class="pre">$ATHOSROOT</span></code>.</p>
+<p>Ensure you can log into IXP Manager and that you can access <code class="docutils literal notranslate"><span class="pre">Miru</span></code>, this is
+available to superuser (aka admins) in IXP Manager and can be located at the
+bottom of of the left side bar.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="HolistIX’s documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="firstTime.html" class="btn btn-neutral float-right" title="First Time IXP Manager Setup" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Christoff Visser.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

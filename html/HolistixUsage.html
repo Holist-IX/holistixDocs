@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HolistIX usage &mdash; HolistIX  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Common Troubleshooting Issues" href="troubleshoot.html" />
+    <link rel="prev" title="First Time IXP Manager Setup" href="firstTime.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> HolistIX
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="quickInstall.html">Quick Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="firstTime.html">First Time IXP Manager Setup</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">HolistIX usage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#miru">Miru</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#switches">Switches</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#core-links">Core Links</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#verification-athos">Verification (Athos)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#deployment-cerberus">Deployment (Cerberus)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="troubleshoot.html">Common Troubleshooting Issues</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">HolistIX</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>HolistIX usage</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/HolistixUsage.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="holistix-usage">
+<h1>HolistIX usage<a class="headerlink" href="#holistix-usage" title="Permalink to this headline"></a></h1>
+<p>We integrate HolistIX into IXP Manager. The main interface to interact with the
+HolistIX specific interface is called <code class="docutils literal notranslate"><span class="pre">Miru</span></code>. To access Miru click on <code class="docutils literal notranslate"><span class="pre">Miru</span></code>
+at the bottom of the left sidebar.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">Miru</span></code> is not located in the please ensure that you have followed the
+steps in <a class="reference external" href="miru-install">installing Miru</a>.</p>
+</div>
+<section id="miru">
+<h2>Miru<a class="headerlink" href="#miru" title="Permalink to this headline"></a></h2>
+<section id="switches">
+<h3>Switches<a class="headerlink" href="#switches" title="Permalink to this headline"></a></h3>
+<p>When you first open up Miru, it will populate the graph sidebar with the active
+switches configured in IXP Manager.</p>
+<p>A switch object contains all the information related to it, including
+hostname, IP address, model, switch name, core ports available, as well as all the
+members connected to that switch.</p>
+<p>Each switch object also contains the information of each member that is
+connected to it, including port connected to, VLAN information, IPv4/6 addresses,
+and MAC addresses.</p>
+<p>To add a new switch to your topology, you can either drag a switch to onto the
+diagram, or you can double click it and it will appear on the diagram.</p>
+</section>
+<section id="core-links">
+<h3>Core Links<a class="headerlink" href="#core-links" title="Permalink to this headline"></a></h3>
+<p>To establish a connection between two switches, hover over your source switch,
+click and drag the arrow to the destination switch to connect to.</p>
+<p>Miru will look for core ports on both switches and assign them to the
+link. If you want to change the ports used for the link, right click on the link,
+click <code class="docutils literal notranslate"><span class="pre">Edit</span> <span class="pre">Switch</span> <span class="pre">Ports</span></code> and then change the ports.</p>
+<p>Continue to draw your network topology so that it reflects your network.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Miru will auto update the details of members within the topology when
+changes are found within IXP Manager. However, the config will only be
+generated and deployed after the <a class="reference internal" href="#athos-usage"><span class="std std-ref">verification process</span></a>
+is initiated.</p>
+<p>The topology within Miru only needs to be redrawn if there are changes in
+how the switches are interconnected.</p>
+</div>
+</section>
+</section>
+<section id="verification-athos">
+<span id="athos-usage"></span><h2>Verification (Athos)<a class="headerlink" href="#verification-athos" title="Permalink to this headline"></a></h2>
+<p>To generate the network configuration and run Athos, at the top left of the
+diagram open <code class="docutils literal notranslate"><span class="pre">File</span></code> and then <code class="docutils literal notranslate"><span class="pre">Start</span> <span class="pre">Athos</span></code>.</p>
+<p>This starts the automated process of generating config files and starting the
+Athos network emulator. Athos will run test the network topology that is
+specified on the diagram.</p>
+<p>Once completed, you will be presented with the option to download configs and
+logs.</p>
+</section>
+<section id="deployment-cerberus">
+<h2>Deployment (Cerberus)<a class="headerlink" href="#deployment-cerberus" title="Permalink to this headline"></a></h2>
+<p>If the Cerberus API is configured in IXP Manager’s
+<a class="reference internal" href="quickInstall.html#sample-config"><span class="std std-ref">custom config</span></a>, you will have the option to
+<code class="docutils literal notranslate"><span class="pre">Deploy</span> <span class="pre">to</span> <span class="pre">production</span></code>. This will send the config to Cerberus which will
+apply the config to the current running network.</p>
+<p>If you want to have a closer look at the configuration that Cerberus is
+currently using in the network, you can retrieve this within <code class="docutils literal notranslate"><span class="pre">Miru</span></code>. Go to
+<code class="docutils literal notranslate"><span class="pre">File</span></code> and then <code class="docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Cerberus</span> <span class="pre">config</span></code>.</p>
+<p>Cerberus also has a rollback feature if any issues arise when a new
+configuration was deployed. This allows Cerberus to rollback to the
+previously used configuration from within <code class="docutils literal notranslate"><span class="pre">Miru</span></code>. To activate this go to
+<code class="docutils literal notranslate"><span class="pre">File</span></code> and then <code class="docutils literal notranslate"><span class="pre">Rollback</span> <span class="pre">Cerberus</span> <span class="pre">Config</span></code>.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="firstTime.html" class="btn btn-neutral float-left" title="First Time IXP Manager Setup" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="troubleshoot.html" class="btn btn-neutral float-right" title="Common Troubleshooting Issues" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Christoff Visser.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
