@@ -1,14 +1,28 @@
-.. HolistIX documentation master file, created by
-   sphinx-quickstart on Wed Oct 20 09:54:24 2021.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
-
-Welcome to HolistIX's documentation!
+HolistIX's documentation
 ====================================
+
+Introduction
+------------
+
+HolistIX is an Intent Based Networking (IBN) platform designed for Internet
+eXchange points (IXPs). HolistIX extends IXP Manager and empowers operators with
+a centralized platform to plan, verify and deploy networks.
+
+HolistIX is broken into the following 3 core components:
+
+- Miru (Planning)
+- Athos (Verification)
+- Cerberus (Deployment)
+
+
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
+
+   quickInstall
+   firstTime
+   HolistixUsage
+   troubleshoot
 
 
 
