@@ -106,6 +106,10 @@ Below is a sample config file:
     ];
 
 
+The ``athos wrapper`` api is a simple REST api to help ``miru`` start the
+athos instance. A simple wrapper can be found `here <https://github.com/Belthazaar/athosapi>`_.
+
+
 Athos
 -----
 
