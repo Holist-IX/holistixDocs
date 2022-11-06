@@ -44,6 +44,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#miru">Miru</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#athos">Athos</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#docker">Docker</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#athos-wrapper-api">Athos Wrapper API</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#cerberus-installation">Cerberus installation</a></li>
@@ -171,6 +172,11 @@ HolistIX. Here we specify the <code class="docutils literal notranslate"><span c
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">athos</span> <span class="pre">wrapper</span></code> api is a simple REST api to help <code class="docutils literal notranslate"><span class="pre">miru</span></code> start the
 athos instance. A simple wrapper can be found <a class="reference external" href="https://github.com/Belthazaar/athosapi">here</a>.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>If you are not using the Athos Wrapper API, comment out the line in
+the config. If left in, Miru will not be able to communicate with Athos.</p>
+</div>
 </section>
 <section id="athos">
 <h2>Athos<a class="headerlink" href="#athos" title="Permalink to this headline"></a></h2>
@@ -214,6 +220,47 @@ for athos that will run the docker image in privileged mode. The wrapper API wil
 also handle storing the config for athos, getting the results and cleaning up
 the container afterwards.</p>
 </section>
+<section id="athos-wrapper-api">
+<h3>Athos Wrapper API<a class="headerlink" href="#athos-wrapper-api" title="Permalink to this headline"></a></h3>
+<p>A simple wrapper to communicate with Athos can be found
+<a class="reference external" href="https://github.com/Belthazaar/athosapi">here.</a> Simply download and
+extract it as follows:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wget -q -O athos_api.zip https://github.com/Belthazaar/athosapi/archive/refs/heads/master.zip <span class="o">&amp;&amp;</span>
+unzip athos_api.zip <span class="o">&amp;&amp;</span>
+rm athos_api.zip
+</pre></div>
+</div>
+<p>The wrapper will need to be run as either root or a user that can run
+docker with networking capabilities.</p>
+<p>For simplicity we recommend creating the <code class="docutils literal notranslate"><span class="pre">athos</span></code> user giving it docker
+access.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">useradd</span> <span class="o">-</span><span class="n">r</span> <span class="o">-</span><span class="n">M</span> <span class="o">-</span><span class="n">G</span> <span class="n">athos</span><span class="p">,</span><span class="n">docker</span> <span class="n">athos</span>
+</pre></div>
+</div>
+<p>To ensure that the wrapper is running in the background and starts up after
+restarting you can add it as a service under <code class="docutils literal notranslate"><span class="pre">/usr/lib/systemd/system/athosapi.service</span></code>.</p>
+<p>Make sure you change the $APIROOT to the location where the wrapper is
+located.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>[Unit]
+Description=&quot;API Wrapper for Athos&quot;
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+User=athos
+Group=athos
+ExecStart=/usr/bin/python3 $APIROOT/athosapi.py
+ExecReload=/bin/kill -HUP $MAINPID
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+</pre></div>
+</div>
+<p>To start the service run <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">service</span> <span class="pre">start</span> <span class="pre">athos-wrapper</span></code>. To check the
+status run <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">service</span> <span class="pre">status</span> <span class="pre">athos-wrapper</span></code> and to ensure that it
+starts on boot run <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">service</span> <span class="pre">enable</span> <span class="pre">athos-wrapper</span></code>.</p>
+</section>
 </section>
 <section id="cerberus-installation">
 <h2>Cerberus installation<a class="headerlink" href="#cerberus-installation" title="Permalink to this headline"></a></h2>
@@ -235,6 +282,32 @@ and only allows connections to hosts that are already configured.</p>
 older configs stored at <code class="docutils literal notranslate"><span class="pre">/etc/cerberus/rollback/</span></code> and failed configs will be
 stored at <code class="docutils literal notranslate"><span class="pre">/etc/cerberus/failed/</span></code>.</p>
 <p>The default api address for Cerberus is <code class="docutils literal notranslate"><span class="pre">http://localhost:8080/api</span></code>.</p>
+<p>To run Cerberus as a service, create the following service file at
+<code class="docutils literal notranslate"><span class="pre">/usr/lib/systemd/system/cerberus.service</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>[Unit]
+Description=&quot;Cerberus OpenFlow Controller&quot;
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+User=cerberus
+Group=cerberus
+ExecStart=/usr/local/bin/cerberus-controller --wsapi-host 127.0.0.1
+ExecReload=/bin/kill -HUP $MAINPID
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>There is currently an issue when install cerberus with pip, it does not
+always create the appropriate directories.</p>
+<p>For completeness run the following to ensure that all the directories
+have been created:</p>
+<p><code class="docutils literal notranslate"><span class="pre">mkdir</span> <span class="pre">-p</span> <span class="pre">/etc/cerberus/rollback</span> <span class="pre">/etc/cerberus/failed</span> <span class="pre">/var/log/cerberus</span></code></p>
+</div>
 </section>
 <section id="openflow-switch-configuration">
 <h2>OpenFlow Switch configuration<a class="headerlink" href="#openflow-switch-configuration" title="Permalink to this headline"></a></h2>

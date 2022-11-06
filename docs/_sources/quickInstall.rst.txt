@@ -109,6 +109,11 @@ Below is a sample config file:
 The ``athos wrapper`` api is a simple REST api to help ``miru`` start the
 athos instance. A simple wrapper can be found `here <https://github.com/Belthazaar/athosapi>`_.
 
+.. important::
+
+    If you are not using the Athos Wrapper API, comment out the line in
+    the config. If left in, Miru will not be able to communicate with Athos.
+
 
 Athos
 -----
@@ -164,6 +169,57 @@ also handle storing the config for athos, getting the results and cleaning up
 the container afterwards.
 
 
+Athos Wrapper API
+~~~~~~~~~~~~~~~~~
+
+A simple wrapper to communicate with Athos can be found
+`here. <https://github.com/Belthazaar/athosapi>`_ Simply download and
+extract it as follows:
+
+.. code-block:: bash
+
+    wget -q -O athos_api.zip https://github.com/Belthazaar/athosapi/archive/refs/heads/master.zip &&
+    unzip athos_api.zip &&
+    rm athos_api.zip
+
+The wrapper will need to be run as either root or a user that can run
+docker with networking capabilities.
+
+For simplicity we recommend creating the ``athos`` user giving it docker
+access.
+
+.. code-block::
+
+    useradd -r -M -G athos,docker athos
+
+To ensure that the wrapper is running in the background and starts up after
+restarting you can add it as a service under ``/usr/lib/systemd/system/athosapi.service``.
+
+Make sure you change the $APIROOT to the location where the wrapper is
+located.
+
+.. code-block::
+
+    [Unit]
+    Description="API Wrapper for Athos"
+    After=network-online.target
+    Wants=network-online.target
+
+    [Service]
+    User=athos
+    Group=athos
+    ExecStart=/usr/bin/python3 $APIROOT/athosapi.py
+    ExecReload=/bin/kill -HUP $MAINPID
+    Restart=always
+
+    [Install]
+    WantedBy=multi-user.target
+
+To start the service run ``sudo service start athos-wrapper``. To check the
+status run ``sudo service status athos-wrapper`` and to ensure that it
+starts on boot run ``sudo service enable athos-wrapper``.
+
+
 Cerberus installation
 ---------------------
 
@@ -193,7 +249,35 @@ stored at ``/etc/cerberus/failed/``.
 
 The default api address for Cerberus is ``http://localhost:8080/api``.
 
-.. todo:: Add service install instructions.
+To run Cerberus as a service, create the following service file at
+``/usr/lib/systemd/system/cerberus.service``
+
+.. code-block::
+
+    [Unit]
+    Description="Cerberus OpenFlow Controller"
+    After=network-online.target
+    Wants=network-online.target
+
+    [Service]
+    User=cerberus
+    Group=cerberus
+    ExecStart=/usr/local/bin/cerberus-controller --wsapi-host 127.0.0.1
+    ExecReload=/bin/kill -HUP $MAINPID
+    Restart=always
+
+    [Install]
+    WantedBy=multi-user.target
+
+.. note::
+
+    There is currently an issue when install cerberus with pip, it does not
+    always create the appropriate directories.
+
+    For completeness run the following to ensure that all the directories
+    have been created:
+
+    ``mkdir -p /etc/cerberus/rollback /etc/cerberus/failed /var/log/cerberus``
 
 
 OpenFlow Switch configuration

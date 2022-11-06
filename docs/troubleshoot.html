@@ -52,10 +52,17 @@
 <li class="toctree-l3"><a class="reference internal" href="#undefined-links-when-connecting-2-switches">“Undefined” links when connecting 2 switches</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#error-saving-config">“error saving config”</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#no-output-when-running-tests">No output when running tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#clicking-start-tests-does-nothing">Clicking <code class="docutils literal notranslate"><span class="pre">Start</span> <span class="pre">Tests</span></code> does nothing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#topology-not-saving">Topology not saving</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#no-option-to-deploy">No option to deploy</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#athos">Athos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#athos-api-wrapper">Athos API wrapper</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#wrapper-talking-to-athos">Wrapper Talking to Athos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ixp-manager-configured-correctly">IXP Manager Configured correctly</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#cerberus">Cerberus</a></li>
 </ul>
 </li>
@@ -159,6 +166,16 @@ athos api</p>
 <p>Check Athos logs, the issue is most likely due to a failure detected in testing
 that is taking too long to report back to Miru.</p>
 </section>
+<section id="clicking-start-tests-does-nothing">
+<h3>Clicking <code class="docutils literal notranslate"><span class="pre">Start</span> <span class="pre">Tests</span></code> does nothing<a class="headerlink" href="#clicking-start-tests-does-nothing" title="Permalink to this headline"></a></h3>
+<p>This indicates that there is an issue between Miru and Athos. Check the
+<a class="reference internal" href="#id1"><span class="std std-ref">Athos troubleshoot</span></a> section for more details.</p>
+</section>
+<section id="topology-not-saving">
+<h3>Topology not saving<a class="headerlink" href="#topology-not-saving" title="Permalink to this headline"></a></h3>
+<p>This indicates that there is an issue between Miru and Athos. Check the
+<a class="reference internal" href="#id1"><span class="std std-ref">Athos troubleshoot</span></a> section for more details.</p>
+</section>
 <section id="no-option-to-deploy">
 <span id="no-deploy"></span><h3>No option to deploy<a class="headerlink" href="#no-option-to-deploy" title="Permalink to this headline"></a></h3>
 <ul class="simple">
@@ -180,13 +197,56 @@ topology.</p>
 <p>If you are using the athos wrapper api, ensure that it is running with
 <code class="docutils literal notranslate"><span class="pre">systemctl</span> <span class="pre">status</span> <span class="pre">athos_api.service</span></code>. If it is not running, run
 <code class="docutils literal notranslate"><span class="pre">systemctl</span> <span class="pre">start</span> <span class="pre">athos_api.service</span></code>.</p>
-<p>If you are not using the Athos wrapper API, ensure that your <cite>$MY_WWW_USER`</cite> has
+<p>If you are not using the Athos wrapper API, ensure that your <code class="docutils literal notranslate"><span class="pre">$MY_WWW_USER</span></code> has
 permission to run the <code class="docutils literal notranslate"><span class="pre">runDocker.sh</span></code> script within <code class="docutils literal notranslate"><span class="pre">$ATHOSROOT</span></code> and has read
 and write permissions at minimum within the following locations:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">$ATHOSROOT/etc</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">$ATHOSROOT/ixpman_files</span></code></p></li>
 </ul>
+</section>
+<section id="athos-api-wrapper">
+<h2>Athos API wrapper<a class="headerlink" href="#athos-api-wrapper" title="Permalink to this headline"></a></h2>
+<p>First thing to check would be that the wrapper is running. If you are running
+it as a service as described in the setup, you can check it’s status by running
+<code class="docutils literal notranslate"><span class="pre">systemctl</span> <span class="pre">status</span> <span class="pre">athos_api.service</span></code>. If not, you can always check the status
+with <code class="docutils literal notranslate"><span class="pre">ps</span> <span class="pre">aux</span> <span class="pre">|</span> <span class="pre">grep</span> <span class="pre">athos</span></code> to find all instances of athos and athos api.</p>
+<section id="wrapper-talking-to-athos">
+<h3>Wrapper Talking to Athos<a class="headerlink" href="#wrapper-talking-to-athos" title="Permalink to this headline"></a></h3>
+<p>The API wrapper will need to be run as either root, or a user that has docker
+permissions with networking capabilities.</p>
+<p>The quickest way to ensure that the wrapper API is working as intended is by
+running the following:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1">#Get the xml file for the topology</span>
+curl -X GET http://127.0.0.1:8989/get_xml
+<span class="c1">#Start and run an instance of Athos with output</span>
+curl -X GET http://127.0.0.1:8989/run_athos
+</pre></div>
+</div>
+<p>If this does not work check to ensure that the athos directory used in the
+API wrapper is set to the directory where you have extracted Athos.
+The default location for both of these is <code class="docutils literal notranslate"><span class="pre">/athos</span></code>.</p>
+</section>
+<section id="ixp-manager-configured-correctly">
+<h3>IXP Manager Configured correctly<a class="headerlink" href="#ixp-manager-configured-correctly" title="Permalink to this headline"></a></h3>
+<p>Next would be to ensure that the configuration in
+<code class="docutils literal notranslate"><span class="pre">${IXPROOT}/config/custom.php</span></code> matches how the wrapper is configured to run.</p>
+<p>Below is a sample config looking for the default address of the wrapper api at
+<code class="docutils literal notranslate"><span class="pre">http://127.0.0.1:8989</span></code>.</p>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="x">return [</span>
+<span class="x">    &#39;athos&#39; =&gt; [</span>
+<span class="x">        // The directory where your athos is stored</span>
+<span class="x">        &#39;dir&#39; =&gt; &#39;/athos&#39;,</span>
+<span class="x">        // The URL for the athos wrapper API</span>
+<span class="x">        &#39;api_url&#39; =&gt; &#39;http://localhost:8989&#39;</span>
+<span class="x">    ],</span>
+<span class="x">    &#39;cerberus&#39; =&gt; [</span>
+<span class="x">        &#39;api_url&#39; =&gt; &#39;http://localhost:8080/api&#39;,</span>
+<span class="x">    ]</span>
+<span class="x">];</span>
+</pre></div>
+</div>
+</section>
 </section>
 <section id="cerberus">
 <h2>Cerberus<a class="headerlink" href="#cerberus" title="Permalink to this headline"></a></h2>
