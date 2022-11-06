@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>First Time IXP Manager Setup &mdash; HolistIX  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="HolistIX usage" href="HolistixUsage.html" />
+    <link rel="prev" title="Quick Installation" href="quickInstall.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> HolistIX
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="quickInstall.html">Quick Installation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">First Time IXP Manager Setup</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#ixp-manager">IXP Manager</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#infrastructure">Infrastructure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#facilities">Facilities</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#racks">Racks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#switches">Switches</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#switch-ids">Switch IDs:</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#designate-core-ports">Designate Core Ports</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#vlans">VLANs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#peering-ips">Peering IPs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#member-customers">Member/Customers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#member-connection">Member Connection</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="HolistixUsage.html">HolistIX usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="troubleshoot.html">Common Troubleshooting Issues</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">HolistIX</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>First Time IXP Manager Setup</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/firstTime.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="first-time-ixp-manager-setup">
+<h1>First Time IXP Manager Setup<a class="headerlink" href="#first-time-ixp-manager-setup" title="Permalink to this headline"></a></h1>
+<p>Congratulations, you have installed HolistIX and its components. This section
+will go over setting up some basic information inside IXP Manager and HolistIX
+as a tutorial.</p>
+<p>This is not a conclusive guide to IXP Manager, and we will use a lot
+of examples. However, the goal is to summarize the basic information that HolistIX
+expects and requires to be set up. For a more in-depth guide, we recommend
+checking out the <a class="reference external" href="https://docs.ixpmanager.org/">IXP Manager documentation</a>
+or their <a class="reference external" href="https://www.ixpmanager.org/support/tutorials">video tutorial series</a>.</p>
+<section id="ixp-manager">
+<h2>IXP Manager<a class="headerlink" href="#ixp-manager" title="Permalink to this headline"></a></h2>
+<p>This will go over some of the basic elements needed in IXP Manager to describe
+your IXP. We can find most of these found under <strong>IXP ADMIN ACTIONS</strong> on the
+left sidebar. When creating a new instance of these, click the <a class="reference internal" href="_images/add.png"><img alt="add" src="_images/add.png" style="width: 20px;" /></a> button on
+the top right of the page to create a new instance.</p>
+<p>The bare minimum needed to be setup within IXP Manager is the following in order:</p>
+<ul class="simple">
+<li><p>Infrastructure</p></li>
+<li><p>Facilities</p></li>
+<li><p>Racks</p></li>
+<li><p>Switches</p></li>
+<li><p>Designate core ports</p></li>
+<li><p>VLAN(s)</p></li>
+<li><p>Peering IPs</p></li>
+<li><p>Member/Customer</p></li>
+<li><p>Member Connection</p></li>
+</ul>
+<section id="infrastructure">
+<h3>Infrastructure<a class="headerlink" href="#infrastructure" title="Permalink to this headline"></a></h3>
+<p>An infrastructure generally consists of a collection of switches that form an
+IXP Peering LAN. Think of these as an IXP. Where each infrastructure consists of
+a unique set of switches and these infrastructures are not interconnected. They
+also typically have their own unique PeeringDB and IX-F entry.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>HolistIX currently only supports generating configuration for a single
+infrastructure at this time.</p>
+</div>
+</section>
+<section id="facilities">
+<h3>Facilities<a class="headerlink" href="#facilities" title="Permalink to this headline"></a></h3>
+<p>Your point of presences - the data centres where networks can connect to one of
+IX switches.</p>
+</section>
+<section id="racks">
+<h3>Racks<a class="headerlink" href="#racks" title="Permalink to this headline"></a></h3>
+<p>The racks where your switches and patch panels are located.</p>
+</section>
+<section id="switches">
+<h3>Switches<a class="headerlink" href="#switches" title="Permalink to this headline"></a></h3>
+<p>You can now add your switches and assign them to a rack and infrastructure. We
+recommend making use of the SNMP (v2) service that IXP Manager has. It is
+important to note that IXP Manager will need SNMP access to your switches for
+this. We also recommend that your switches have a domain name registered
+in DNS, and to avoid using IP addresses here.</p>
+<p>We recommend looking at IXP Manager’s
+<a class="reference external" href="https://docs.ixpmanager.org/usage/switches/">documentation for switches</a>.</p>
+<section id="switch-ids">
+<span id="dpid"></span><h4>Switch IDs:<a class="headerlink" href="#switch-ids" title="Permalink to this headline"></a></h4>
+<p>Once the switch, is added you can view the switch id when you look at the details
+of the switch. The ID will be shown as <code class="docutils literal notranslate"><span class="pre">(DB</span> <span class="pre">ID:</span> <span class="pre">X)</span></code>. This will be the ID that
+you need to assign on the OpenFlow Switch.</p>
+</section>
+</section>
+<section id="designate-core-ports">
+<h3>Designate Core Ports<a class="headerlink" href="#designate-core-ports" title="Permalink to this headline"></a></h3>
+<p>Currently, there are no ways to declare core links within IXP Manager. However,
+we can declare which ports on our switches will use for core connectivity.</p>
+<p>For this we need to open <code class="docutils literal notranslate"><span class="pre">Switches</span></code> on the left sidebar, which will
+expand the switches submenu, and then open <code class="docutils literal notranslate"><span class="pre">Switch</span> <span class="pre">Ports</span></code>.</p>
+<p>On the top right, next to the <a class="reference internal" href="_images/add.png"><img alt="add" src="_images/add.png" style="width: 20px;" /></a> button, click on the arrow and filter to the
+switch that’s ports you want to change. For changing multiple ports, click on
+the <code class="docutils literal notranslate"><span class="pre">View</span> <span class="pre">/</span> <span class="pre">Edit</span> <span class="pre">Ports</span></code> underneath the <code class="docutils literal notranslate"><span class="pre">SNMP</span> <span class="pre">Actions</span></code> section, for individual
+ports you can click <code class="docutils literal notranslate"><span class="pre">View</span> <span class="pre">/</span> <span class="pre">Edit</span> <span class="pre">ports</span></code> under the <code class="docutils literal notranslate"><span class="pre">Database</span> <span class="pre">Actions</span></code>.</p>
+<p>Find the ports that you want to designate as core ports and change the
+<code class="docutils literal notranslate"><span class="pre">port</span> <span class="pre">type</span></code> to <code class="docutils literal notranslate"><span class="pre">Core</span></code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If no core ports are designated for a switch, you will not be able to
+connect it to another switch within Miru</p>
+</div>
+</section>
+<section id="vlans">
+<h3>VLANs<a class="headerlink" href="#vlans" title="Permalink to this headline"></a></h3>
+<p>You will need at least 1 VLAN configured. IXP Manager recommends a separate
+quarantine VLAN.</p>
+<p>With HolistIX, we only allow traffic from per approved members and their specific
+configured connections. We encode the paths to each configured member on the
+switches and translate broadcast traffic to unicast, and any other unknown or
+bad traffic is dropped at the edge.</p>
+</section>
+<section id="peering-ips">
+<h3>Peering IPs<a class="headerlink" href="#peering-ips" title="Permalink to this headline"></a></h3>
+<p>Add your peering addresses. This can be either individual addresses or complete
+ranges (e.g. /24) and a more sensible range for v6 (i.e. not an entire /64)</p>
+</section>
+<section id="member-customers">
+<h3>Member/Customers<a class="headerlink" href="#member-customers" title="Permalink to this headline"></a></h3>
+<p>One of the features that IXP Manager provides is to auto fill member details via
+PeeringDB. Reducing admin and accounting errors.</p>
+<img alt="Adding member interface" src="_images/addmember.png" />
+<p>Once the member details have been added, IXP Manager will also request that you
+enter their registration and billing details. Although not required for testing
+with HolistIX, this is strongly recommended to help with administration tasks.</p>
+</section>
+<section id="member-connection">
+<h3>Member Connection<a class="headerlink" href="#member-connection" title="Permalink to this headline"></a></h3>
+<p>To add a connection to a member, you need to open up <code class="docutils literal notranslate"><span class="pre">Interfaces/Ports</span></code> on the
+left sidebar and click the <a class="reference internal" href="_images/add.png"><img alt="add" src="_images/add.png" style="width: 20px;" /></a> button, and then <code class="docutils literal notranslate"><span class="pre">Add</span> <span class="pre">Interface</span> <span class="pre">Wizard</span></code>.</p>
+<p>This opens the add interface wizard. From here you can select a member, what
+peering VLAN they will use, the switch and port they connect to, etc. The IP
+addresses are pulled from the previously configured IP address range, and limits
+choices to unused IPs.</p>
+<img alt="Adding Interface page example" src="_images/addInterface.png" />
+<p>Once done, it will take you to the Edit interface page. Here you can add more
+VLAN interfaces to your physical interface. If the member’s connection is VLAN
+tagged, tick the 802.1Q box. Configure the MAC addresses for each connection.</p>
+<p>While IXP Manager supports multiple MAC addresses per IP address, HolistIX only
+supports a single MAC address per IP.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>You need to configure the MAC address of the members’ connection here. We
+use this when translating broadcast traffic into unicast.</p>
+<p>If not configured correctly, traffic <strong>WILL NOT</strong> reach a member.</p>
+</div>
+<p>Add your members as they will be/are connected to your IXP. It is important that
+this reflects what is running in production, we only send traffic to a member on
+the port with the given IPv4/6 and MAC address that is configured.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="quickInstall.html" class="btn btn-neutral float-left" title="Quick Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="HolistixUsage.html" class="btn btn-neutral float-right" title="HolistIX usage" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Christoff Visser.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
