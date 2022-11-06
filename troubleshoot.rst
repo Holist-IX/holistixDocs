@@ -83,6 +83,20 @@ No output when running tests
 Check Athos logs, the issue is most likely due to a failure detected in testing
 that is taking too long to report back to Miru.
 
+
+Clicking ``Start Tests`` does nothing
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This indicates that there is an issue between Miru and Athos. Check the
+:ref:`Athos troubleshoot <athos_troubleshoot>` section for more details.
+
+
+Topology not saving
+~~~~~~~~~~~~~~~~~~~
+
+This indicates that there is an issue between Miru and Athos. Check the
+:ref:`Athos troubleshoot <athos_troubleshoot>` section for more details.
+
 .. _no_deploy:
 
 No option to deploy
@@ -115,12 +129,66 @@ If you are using the athos wrapper api, ensure that it is running with
 ``systemctl status athos_api.service``. If it is not running, run
 ``systemctl start athos_api.service``.
 
-If you are not using the Athos wrapper API, ensure that your `$MY_WWW_USER`` has
+If you are not using the Athos wrapper API, ensure that your ``$MY_WWW_USER`` has
 permission to run the ``runDocker.sh`` script within ``$ATHOSROOT`` and has read
 and write permissions at minimum within the following locations:
 
 - ``$ATHOSROOT/etc``
 - ``$ATHOSROOT/ixpman_files``
+
+
+Athos API wrapper
+-----------------
+
+First thing to check would be that the wrapper is running. If you are running
+it as a service as described in the setup, you can check it's status by running
+``systemctl status athos_api.service``. If not, you can always check the status
+with ``ps aux | grep athos`` to find all instances of athos and athos api.
+
+
+Wrapper Talking to Athos
+~~~~~~~~~~~~~~~~~~~~~~~
+
+The API wrapper will need to be run as either root, or a user that has docker
+permissions with networking capabilities.
+
+The quickest way to ensure that the wrapper API is working as intended is by
+running the following:
+
+.. code-block:: bash
+
+  #Get the xml file for the topology
+  curl -X GET http://127.0.0.1:8989/get_xml
+  #Start and run an instance of Athos with output
+  curl -X GET http://127.0.0.1:8989/run_athos
+
+If this does not work check to ensure that the athos directory used in the
+API wrapper is set to the directory where you have extracted Athos.
+The default location for both of these is ``/athos``.
+
+IXP Manager Configured correctly
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Next would be to ensure that the configuration in
+``${IXPROOT}/config/custom.php`` matches how the wrapper is configured to run.
+
+Below is a sample config looking for the default address of the wrapper api at
+``http://127.0.0.1:8989``.
+
+.. code-block:: php
+
+  return [
+      'athos' => [
+          // The directory where your athos is stored
+          'dir' => '/athos',
+          // The URL for the athos wrapper API
+          'api_url' => 'http://localhost:8989'
+      ],
+      'cerberus' => [
+          'api_url' => 'http://localhost:8080/api',
+      ]
+  ];
+
 
 Cerberus
 --------
