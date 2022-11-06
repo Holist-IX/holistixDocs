@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Common Troubleshooting Issues &mdash; HolistIX  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="HolistIX usage" href="HolistixUsage.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> HolistIX
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="quickInstall.html">Quick Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="firstTime.html">First Time IXP Manager Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="HolistixUsage.html">HolistIX usage</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Common Troubleshooting Issues</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#general-issues">General Issues</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#member-unreachable">Member unreachable</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#members-lost-traffic-right-after-deployment">Members lost traffic right after deployment</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#issues-in-miru">Issues in Miru</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#miru-not-showing-up-on-the-sidebar">Miru not showing up on the sidebar</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#switches-not-showing-up-in-miru">Switches not showing up in Miru</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#undefined-links-when-connecting-2-switches">“Undefined” links when connecting 2 switches</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#error-saving-config">“error saving config”</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#no-output-when-running-tests">No output when running tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#clicking-start-tests-does-nothing">Clicking <code class="docutils literal notranslate"><span class="pre">Start</span> <span class="pre">Tests</span></code> does nothing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#topology-not-saving">Topology not saving</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#no-option-to-deploy">No option to deploy</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#athos">Athos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#athos-api-wrapper">Athos API wrapper</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#wrapper-talking-to-athos">Wrapper Talking to Athos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ixp-manager-configured-correctly">IXP Manager Configured correctly</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#cerberus">Cerberus</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">HolistIX</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Common Troubleshooting Issues</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/troubleshoot.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="common-troubleshooting-issues">
+<h1>Common Troubleshooting Issues<a class="headerlink" href="#common-troubleshooting-issues" title="Permalink to this headline"></a></h1>
+<p>This section contains some common problems and how to fix them.</p>
+<section id="general-issues">
+<h2>General Issues<a class="headerlink" href="#general-issues" title="Permalink to this headline"></a></h2>
+<section id="member-unreachable">
+<h3>Member unreachable<a class="headerlink" href="#member-unreachable" title="Permalink to this headline"></a></h3>
+<p>Check if the member’s details in IXP Manager matches with what the member
+actually has.</p>
+<p>The most important ones are:</p>
+<ul class="simple">
+<li><p>MAC Address</p></li>
+<li><p>IPv4/6 Address</p></li>
+<li><p>Port connection matches where the member’s connection is</p></li>
+</ul>
+<p>A common scenario is a member performed maintenance and their MAC changed
+without notification.</p>
+</section>
+<section id="members-lost-traffic-right-after-deployment">
+<h3>Members lost traffic right after deployment<a class="headerlink" href="#members-lost-traffic-right-after-deployment" title="Permalink to this headline"></a></h3>
+<p>In the unlikely case that members lose traffic right after a deployment, make
+use of the rollback function. To start the rollback process, click
+<code class="docutils literal notranslate"><span class="pre">File</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">Rollback</span> <span class="pre">Cerberus</span> <span class="pre">config</span></code>. This restores the configuration on the
+switches to the last working config. By default, the failed configuration will
+be saved to <code class="docutils literal notranslate"><span class="pre">/etc/cerberus/failed/</span></code>. This makes it easier to troubleshoot
+and debug issues at a later time.</p>
+</section>
+</section>
+<section id="issues-in-miru">
+<h2>Issues in Miru<a class="headerlink" href="#issues-in-miru" title="Permalink to this headline"></a></h2>
+<section id="miru-not-showing-up-on-the-sidebar">
+<h3>Miru not showing up on the sidebar<a class="headerlink" href="#miru-not-showing-up-on-the-sidebar" title="Permalink to this headline"></a></h3>
+<p>If Miru is not on the sidebar, you most likely missed a step in the
+<a class="reference internal" href="quickInstall.html#miru-install"><span class="std std-ref">Miru</span></a> installation process. Follow the below checklist to
+ensure everything is configured correctly. If things are missing, please follow
+the install instructions for <a class="reference internal" href="quickInstall.html#miru-install"><span class="std std-ref">Miru</span></a>.</p>
+<ul class="simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">belthazaar</span></code> folder exists in <code class="docutils literal notranslate"><span class="pre">${IXPROOT}/vendor/</span></code>
+- If not, Miru was not installed. Follow all the instructions for the <a class="reference internal" href="quickInstall.html#miru-install"><span class="std std-ref">install</span></a>.</p></li>
+<li><p>That the <code class="docutils literal notranslate"><span class="pre">miru</span></code> folder exists in <code class="docutils literal notranslate"><span class="pre">${IXPROOT}/resources/skins/</span></code></p></li>
+<li><p>Ensure that <code class="docutils literal notranslate"><span class="pre">$IXPROOT/.env</span></code> has the following config set in it <code class="docutils literal notranslate"><span class="pre">VIEW_SKIN=miru</span></code></p></li>
+<li><p>Ensure that <code class="docutils literal notranslate"><span class="pre">${IXPROOT}/public/mxgraph</span></code> exists</p></li>
+<li><p>Ensure that <code class="docutils literal notranslate"><span class="pre">${IXPROOT}/config/custom.php``has</span> <span class="pre">``Athos</span></code> set</p></li>
+<li><p>Ensure that <code class="docutils literal notranslate"><span class="pre">${IXPROOT}/config/custom.php``has</span> <span class="pre">``Cerberus</span></code> set</p></li>
+</ul>
+</section>
+<section id="switches-not-showing-up-in-miru">
+<h3>Switches not showing up in Miru<a class="headerlink" href="#switches-not-showing-up-in-miru" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p>Ensure that there are switches configured within IXP Manager</p></li>
+<li><p>Ensure that the switches are configured as active</p></li>
+</ul>
+</section>
+<section id="undefined-links-when-connecting-2-switches">
+<h3>“Undefined” links when connecting 2 switches<a class="headerlink" href="#undefined-links-when-connecting-2-switches" title="Permalink to this headline"></a></h3>
+<p>This occurs if there are no core ports designated between the two designated
+switches. To designate switch ports on the sidebar go to
+<code class="docutils literal notranslate"><span class="pre">Switches</span></code> → <code class="docutils literal notranslate"><span class="pre">Switch</span> <span class="pre">Ports</span></code>. Choose a switch in the top right corner.
+On the right of the port you want to change, click on the pencil icon to edit
+the interface. Change the port <code class="docutils literal notranslate"><span class="pre">Type</span></code> to <code class="docutils literal notranslate"><span class="pre">Core</span></code>.</p>
+</section>
+<section id="error-saving-config">
+<h3>“error saving config”<a class="headerlink" href="#error-saving-config" title="Permalink to this headline"></a></h3>
+<p>Permission error for saving the configuration. Follow the steps in
+<a class="reference external" href="athos_troubleshoot">Athos troubleshoot</a> to ensure permissions are
+configured correctly.</p>
+<p>This error is only when storing the config directly and you are not using the
+athos api</p>
+</section>
+<section id="no-output-when-running-tests">
+<h3>No output when running tests<a class="headerlink" href="#no-output-when-running-tests" title="Permalink to this headline"></a></h3>
+<p>Check Athos logs, the issue is most likely due to a failure detected in testing
+that is taking too long to report back to Miru.</p>
+</section>
+<section id="clicking-start-tests-does-nothing">
+<h3>Clicking <code class="docutils literal notranslate"><span class="pre">Start</span> <span class="pre">Tests</span></code> does nothing<a class="headerlink" href="#clicking-start-tests-does-nothing" title="Permalink to this headline"></a></h3>
+<p>This indicates that there is an issue between Miru and Athos. Check the
+<a class="reference internal" href="#id1"><span class="std std-ref">Athos troubleshoot</span></a> section for more details.</p>
+</section>
+<section id="topology-not-saving">
+<h3>Topology not saving<a class="headerlink" href="#topology-not-saving" title="Permalink to this headline"></a></h3>
+<p>This indicates that there is an issue between Miru and Athos. Check the
+<a class="reference internal" href="#id1"><span class="std std-ref">Athos troubleshoot</span></a> section for more details.</p>
+</section>
+<section id="no-option-to-deploy">
+<span id="no-deploy"></span><h3>No option to deploy<a class="headerlink" href="#no-option-to-deploy" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p>Ensure that <code class="docutils literal notranslate"><span class="pre">${IXPROOT}/config/custom.php``has</span> <span class="pre">``cerberus</span></code> and its
+<code class="docutils literal notranslate"><span class="pre">api_url</span></code> is configured properly</p></li>
+</ul>
+</section>
+</section>
+<section id="athos">
+<span id="id1"></span><h2>Athos<a class="headerlink" href="#athos" title="Permalink to this headline"></a></h2>
+<p>The best way to troubleshoot athos is by running the athos docker container
+outside of IXP Manager.</p>
+<p>First ensure that you have the docker image for athos by running:</p>
+<p><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">images</span> <span class="pre">belthazaar/athos</span></code></p>
+<p>The latest image can also be pulled with <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">image</span> <span class="pre">pull</span> <span class="pre">belthazaar/athos</span></code>.</p>
+<p>Within <code class="docutils literal notranslate"><span class="pre">$ATHOSROOT</span></code> run <code class="docutils literal notranslate"><span class="pre">runDocker.sh</span></code> as root.</p>
+<p>This will start the athos docker container and run the tests of the last given
+topology.</p>
+<p>If you are using the athos wrapper api, ensure that it is running with
+<code class="docutils literal notranslate"><span class="pre">systemctl</span> <span class="pre">status</span> <span class="pre">athos_api.service</span></code>. If it is not running, run
+<code class="docutils literal notranslate"><span class="pre">systemctl</span> <span class="pre">start</span> <span class="pre">athos_api.service</span></code>.</p>
+<p>If you are not using the Athos wrapper API, ensure that your <code class="docutils literal notranslate"><span class="pre">$MY_WWW_USER</span></code> has
+permission to run the <code class="docutils literal notranslate"><span class="pre">runDocker.sh</span></code> script within <code class="docutils literal notranslate"><span class="pre">$ATHOSROOT</span></code> and has read
+and write permissions at minimum within the following locations:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">$ATHOSROOT/etc</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">$ATHOSROOT/ixpman_files</span></code></p></li>
+</ul>
+</section>
+<section id="athos-api-wrapper">
+<h2>Athos API wrapper<a class="headerlink" href="#athos-api-wrapper" title="Permalink to this headline"></a></h2>
+<p>First thing to check would be that the wrapper is running. If you are running
+it as a service as described in the setup, you can check it’s status by running
+<code class="docutils literal notranslate"><span class="pre">systemctl</span> <span class="pre">status</span> <span class="pre">athos_api.service</span></code>. If not, you can always check the status
+with <code class="docutils literal notranslate"><span class="pre">ps</span> <span class="pre">aux</span> <span class="pre">|</span> <span class="pre">grep</span> <span class="pre">athos</span></code> to find all instances of athos and athos api.</p>
+<section id="wrapper-talking-to-athos">
+<h3>Wrapper Talking to Athos<a class="headerlink" href="#wrapper-talking-to-athos" title="Permalink to this headline"></a></h3>
+<p>The API wrapper will need to be run as either root, or a user that has docker
+permissions with networking capabilities.</p>
+<p>The quickest way to ensure that the wrapper API is working as intended is by
+running the following:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1">#Get the xml file for the topology</span>
+curl -X GET http://127.0.0.1:8989/get_xml
+<span class="c1">#Start and run an instance of Athos with output</span>
+curl -X GET http://127.0.0.1:8989/run_athos
+</pre></div>
+</div>
+<p>If this does not work check to ensure that the athos directory used in the
+API wrapper is set to the directory where you have extracted Athos.
+The default location for both of these is <code class="docutils literal notranslate"><span class="pre">/athos</span></code>.</p>
+</section>
+<section id="ixp-manager-configured-correctly">
+<h3>IXP Manager Configured correctly<a class="headerlink" href="#ixp-manager-configured-correctly" title="Permalink to this headline"></a></h3>
+<p>Next would be to ensure that the configuration in
+<code class="docutils literal notranslate"><span class="pre">${IXPROOT}/config/custom.php</span></code> matches how the wrapper is configured to run.</p>
+<p>Below is a sample config looking for the default address of the wrapper api at
+<code class="docutils literal notranslate"><span class="pre">http://127.0.0.1:8989</span></code>.</p>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="x">return [</span>
+<span class="x">    &#39;athos&#39; =&gt; [</span>
+<span class="x">        // The directory where your athos is stored</span>
+<span class="x">        &#39;dir&#39; =&gt; &#39;/athos&#39;,</span>
+<span class="x">        // The URL for the athos wrapper API</span>
+<span class="x">        &#39;api_url&#39; =&gt; &#39;http://localhost:8989&#39;</span>
+<span class="x">    ],</span>
+<span class="x">    &#39;cerberus&#39; =&gt; [</span>
+<span class="x">        &#39;api_url&#39; =&gt; &#39;http://localhost:8080/api&#39;,</span>
+<span class="x">    ]</span>
+<span class="x">];</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="cerberus">
+<h2>Cerberus<a class="headerlink" href="#cerberus" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>First step is to ensure that Cerberus is running and using the latest version.
+Check the version with <code class="docutils literal notranslate"><span class="pre">cerberus-controller</span> <span class="pre">--version</span></code> and check it matches
+the latest version.</p></li>
+<li><p>Ensure that the Cerberus controller is running, if you have it setup as service
+check its status with <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">systemctl</span> <span class="pre">status</span> <span class="pre">cerberus.service</span></code>.</p></li>
+<li><p>Check configurations are set properly. The default configurations are:
+* <code class="docutils literal notranslate"><span class="pre">/etc/cerberus/topology.json</span></code>
+* <code class="docutils literal notranslate"><span class="pre">/etc/cerberus/failed/</span></code> - Failed configurations location
+* <code class="docutils literal notranslate"><span class="pre">/etc/cerberus/rollback/</span></code> - Rollback configurations location</p></li>
+<li><p>Check the logs in <code class="docutils literal notranslate"><span class="pre">/var/log/cerberus/cerberus.log</span></code></p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="HolistixUsage.html" class="btn btn-neutral float-left" title="HolistIX usage" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Christoff Visser.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
